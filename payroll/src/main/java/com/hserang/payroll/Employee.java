@@ -1,10 +1,12 @@
 package com.hserang.payroll;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 /**
  * @author Haroun Serang
@@ -13,15 +15,17 @@ import javax.persistence.Id;
 @Entity
 public class Employee {
     private @Id @GeneratedValue Long id;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String description;
+
+    private @Version @JsonIgnore Long version;
 
     private Employee() {}
 
-    public Employee(String firstname, String lastname, String description) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Employee(String firstName, String lastName, String description) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.description = description;
     }
 }
